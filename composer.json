@@ -1,0 +1,22 @@
+{
+    "name": "marketdragon/categorizable",
+    "description": "Categories api for marketdragon",
+    "type": "library",
+    "require": {
+        "illuminate/support": "^9.0",
+        "kalnoy/nestedset": "^6.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "MarketDragon\\Categorizable\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MarketDragon\\Categorizable\\CategorizableServiceProvider"
+            ]
+        }
+    }
+}
