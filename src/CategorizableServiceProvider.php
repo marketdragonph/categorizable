@@ -5,7 +5,6 @@ namespace MarketDragon\Categorizable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
-use MarketDragon\Categorizable\Categorization;
 use MarketDragon\Categorizable\Commands\Synchronize;
 
 class CategorizableServiceProvider extends ServiceProvider
@@ -38,7 +37,7 @@ class CategorizableServiceProvider extends ServiceProvider
             ]);
         }
 
-        //$this->registerDynamicRelations();
+        $this->registerDynamicRelations();
     }
 
     protected function registerDynamicRelations()
@@ -60,20 +59,20 @@ class CategorizableServiceProvider extends ServiceProvider
 
     protected function mergeConfig()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/category.php', 'category');
+        $this->mergeConfigFrom(__DIR__ . '/../config/category.php', 'category');
     }
 
     protected function publishConfig()
     {
         $this->publishes([
-            __DIR__.'/../config/category.php' => config_path('category.php')
+            __DIR__.'/../config/category.php' => config_path('category.php'),
         ], 'config');
     }
 
     protected function publishMigrations()
     {
         $this->publishes([
-            __DIR__.'/../database/migrations/' => database_path('migrations')
+            __DIR__ . '/../database/migrations/' => database_path('migrations')
         ], 'migrations');
     }
 }

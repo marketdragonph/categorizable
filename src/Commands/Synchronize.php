@@ -46,7 +46,7 @@ class Synchronize extends Command
             $rootNode = $repository->createRootOrFirst();
 
             $this->info("Root category [{$rootNode->name}] created.");
-
+            
             if (file_exists($sourcePath = Arr::get($config, 'source_path'))) {
                 $descendants = json_decode(file_get_contents($sourcePath));
 

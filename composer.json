@@ -4,7 +4,8 @@
     "type": "library",
     "require": {
         "illuminate/support": "^9.0",
-        "kalnoy/nestedset": "^6.0.1"
+        "kalnoy/nestedset": "^6.0.1",
+        "ankurk91/laravel-eloquent-relationships": "^1.2"
     },
     "autoload": {
         "psr-4": {

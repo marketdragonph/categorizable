@@ -6,7 +6,7 @@ return [
     'clusters' => [
         'products' => [
             'model' => \App\Models\Product::class,
-            'source_path' => env('CATEGORIES_JSON_PATH', __DIR__ . '/../resources/products.json'),
+            'source_path' => env('CATEGORIES_JSON_PATH',  '../resources/categories.json'),
         ],
 
         'stores' => [
