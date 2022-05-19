@@ -17,4 +17,11 @@ return [
             'model' => \App\Models\BlogPost::class
         ]
     ],
+
+    'categories' => [
+        [
+            'name' => 'Products',
+            'source_path' => env('CATEGORIES_JSON_PATH',  __DIR__ . '/../resources/categories.json'),
+        ],
+    ],
 ];

@@ -98,6 +98,6 @@ class Categorization
             return $clusters[$name]['model'];
         }
 
-        return null;
+        return $name;
     }
 }
