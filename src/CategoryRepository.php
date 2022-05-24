@@ -52,7 +52,7 @@ class CategoryRepository
     {
         return $this->clusteredQuery()
             ->withDepth()
-            ->having('depth', '=', max(1, $depth))
+            ->having('depth', '>=', max(1, $depth))
             ->get();
     }
 

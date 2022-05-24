@@ -15,7 +15,12 @@ class Category extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name',
+        '_lft',
+        '_rgt',
+        'parent_id',
+    ];
 
     /**
      * The "booted" method of the model.
