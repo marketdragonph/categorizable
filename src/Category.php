@@ -5,10 +5,11 @@ namespace MarketDragon\Categorizable;
 use Illuminate\Support\Str;
 use Kalnoy\Nestedset\NodeTrait;
 use Illuminate\Database\Eloquent\Model;
+use EloquentFilter\Filterable;
 
 class Category extends Model
 {
-    use NodeTrait;
+    use NodeTrait, Filterable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +21,7 @@ class Category extends Model
         '_lft',
         '_rgt',
         'parent_id',
+        'slug',
     ];
 
     /**
@@ -52,7 +54,12 @@ class Category extends Model
      */
     public function isLastDescendantOf(self $node)
     {
-        return $node->isAncestorOf($this) && $this->isLastDescendant();
+        $target = $node
+            ->children()
+            ->reversed()
+            ->first();
+        
+        return ($node->isAncestorOf($this) && ($target->id == $this->id));
     }
 
     /**
@@ -62,6 +69,6 @@ class Category extends Model
      */
     public function isLastDescendant()
     {
-        return count($this->children) === 0;
+        return $this->children()->count() === 0;
     }
 }

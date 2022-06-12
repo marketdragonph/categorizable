@@ -6,7 +6,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 use MarketDragon\Categorizable\Commands\Synchronize;
-use MarketDragon\Categorizable\Commands\CategoriesSyncV2Command;
 
 class CategorizableServiceProvider extends ServiceProvider
 {
@@ -35,7 +34,6 @@ class CategorizableServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                Synchronize::class,
-               CategoriesSyncV2Command::class,
             ]);
         }
 

@@ -49,7 +49,6 @@ class Synchronize extends Command
             
             if (file_exists($sourcePath = Arr::get($config, 'source_path'))) {
                 $descendants = json_decode(file_get_contents($sourcePath));
-
                 $this->traverse($descendants, $rootNode, $rootNode->name);
             }
         }

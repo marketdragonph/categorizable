@@ -6,22 +6,15 @@ return [
     'clusters' => [
         'products' => [
             'model' => \App\Models\Product::class,
-            'source_path' => env('CATEGORIES_JSON_PATH',  __DIR__ . '/../resources/categories.json'),
+            'source_path' => env('CATEGORIES_JSON_PATH',  '/home/sail/packages/categorizable/resources/categories.json'),
         ],
 
         'stores' => [
             'model' => \App\Models\Store::class
         ],
 
-        'blog_posts' => [
-            'model' => \App\Models\BlogPost::class
+        'posts' => [
+            'model' => \App\Models\Post::class
         ]
-    ],
-
-    'categories' => [
-        [
-            'name' => 'Products',
-            'source_path' => env('CATEGORIES_JSON_PATH',  __DIR__ . '/../resources/categories.json'),
-        ],
     ],
 ];
