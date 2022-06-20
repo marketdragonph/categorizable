@@ -36,6 +36,11 @@ class Category extends Model
         });
     }
 
+    public function modelFilter()
+    {
+        return $this->provideFilter(CategoriesFilter::class);
+    }
+
     /**
      * Get the root category of current node.
      *
