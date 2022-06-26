@@ -4,41 +4,43 @@ namespace MarketDragon\Categorizable;
 
 trait CategoryField {
   public $categorySearch;
-  public $selected_categories = [];
+  public $categories = [];
+
+  public $categories_rules = [
+    'categories' => 'required|array|min:2',
+  ];
 
   public function getCategoryTrailProperty()
   {
-      if (empty($this->selected_categories)) return [];
+      if (empty($this->categories)) return [];
 
       return Category::withDepth()
-          ->filter([ 'ids' => $this->selected_categories ])
+          ->filter([ 'ids' => $this->categories ])
           ->get();
 
   }
 
   public function getCurrentNodeProperty() {
         
-    if (!empty($this->selected_categories)) {
+    if (!empty($this->categories)) {
             return Category::withDepth()
-                ->firstWhere('id', end($this->selected_categories));
+                ->firstWhere('id', end($this->categories));
     }
         
     return null;
   }
 
-  public function getCategoriesProperty()
+  public function getCategoryOptionsProperty()
   {
-
-
       return Category::withDepth()
-          ->when(empty($this->selected_categories), function ($query) {
+          ->when(empty($this->categories), function ($query) {
               return $query->having('depth', '=', 1);
           })
-          ->when($this->selected_categories, function ($query) {
+          ->when($this->categories, function ($query) {
               return $query
                   ->when(!$this->currentNode->isLeaf(), function ($query) {
                       return $query
-                          ->whereDescendantOf(end($this->selected_categories));
+                          ->whereDescendantOf(end($this->categories));
                   })
                   ->when($this->currentNode->isLeaf(), function ($query) {
                       $query->whereDescendantOf($this->currentNode->parent);
@@ -50,6 +52,6 @@ trait CategoryField {
   }
 
   public function resetCategories() {
-      $this->reset(['selected_categories']);
+      $this->reset(['categories']);
   }
 }
