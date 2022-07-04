@@ -5,7 +5,7 @@ return [
 
     'clusters' => [
         'products' => [
-            'model' => \App\Models\Product::class,
+            'model' => \MarketDragon\Product\Models\Product::class,
             'source_path' => env('CATEGORIES_JSON_PATH',  '/home/sail/packages/categorizable/resources/categories.json'),
         ],
 
