@@ -72,7 +72,7 @@ trait CategorizableTrait
      */
     public function category()
     {
-        return $this->morphToOne(config('category.model'), 'categorizable');
+        return $this->morphToMany(Category::class, 'categorizable');
     }
 
     /**
