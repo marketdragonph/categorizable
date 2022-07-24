@@ -12,12 +12,20 @@ trait CategoryField {
 
   public function getCategoryTrailProperty()
   {
-      if (empty($this->categories)) return [];
+    if (empty($this->categories)) return [];
 
-      return Category::withDepth()
-          ->filter([ 'ids' => $this->categories ])
-          ->get();
+    return Category::withDepth()
+        ->filter([ 'ids' => $this->categories ])
+        ->get();
 
+  }
+
+  public function initializeCategories($model)
+  {
+    $categories = $model
+            ->category
+            ->pluck('id')->toArray();
+    $this->fill(['categories' => $categories ]);
   }
 
   public function getCurrentNodeProperty() {
